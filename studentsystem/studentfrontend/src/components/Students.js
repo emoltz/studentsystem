@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import {Button, Container, Paper} from '@mui/material';
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 export default function Students() {
     const paperStyle = {padding: 20, height: '70vh', width: 280, margin: "20px auto"}
@@ -25,6 +25,15 @@ export default function Students() {
             console.log(response);
         })
     }
+
+    useEffect(() => {
+            fetch("http://localhost:8080/student/getAll")
+                .then(res => res.json())
+                .then(result => {
+                    setStudents(result);
+                })
+        },
+        []);
     return (
         <Container>
             <Paper elevation={3} style={paperStyle}>
@@ -46,7 +55,22 @@ export default function Students() {
 
                 </Box>
 
+
             </Paper>
+            <h1>Current Students:</h1>
+            <Paper elevation={3} style={paperStyle}>
+
+                {students.map((student) => (
+                    <Paper key={student.id} style={{margin: "10px", padding: "15px", textAlign: "left"}}>
+                        <h3>{student.name}</h3>
+                        <p>{student.address}</p>
+                    </Paper>
+                ))}
+
+
+            </Paper>
+
+
         </Container>
 
     );
