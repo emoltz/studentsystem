@@ -2,9 +2,9 @@ package com.ethanmoltz.studentsystem.service;
 
 import com.ethanmoltz.studentsystem.model.Student;
 
-public class StudentService {
-    public Student saveStudent(Student student){
+import java.util.List;
 
-        return student;
-    }
+public interface StudentService {
+    public Student saveStudent(Student student);
+    public List<Student> getAllStudents();
 }

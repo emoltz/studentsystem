@@ -3,10 +3,12 @@ package com.ethanmoltz.studentsystem.service;
 import com.ethanmoltz.studentsystem.model.Student;
 import com.ethanmoltz.studentsystem.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
-public class StudentServiceImplementation extends StudentService{
+import java.util.List;
+
+@Service
+public class StudentServiceImplementation implements StudentService{
 
     @Autowired
     private StudentRepository studentRepository;
@@ -14,5 +16,10 @@ public class StudentServiceImplementation extends StudentService{
     @Override
     public Student saveStudent(Student student) {
         return studentRepository.save(student);
+    }
+
+    @Override
+    public List<Student> getAllStudents() {
+        return studentRepository.findAll();
     }
 }
