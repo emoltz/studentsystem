@@ -5,6 +5,7 @@ import com.ethanmoltz.studentsystem.model.Student;
 import com.ethanmoltz.studentsystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -15,13 +16,13 @@ public class StudentController {
     private StudentService studentService;
 
     @PostMapping("/add")
-    public String add(@RequestBody Student student){
+    public String add(@RequestBody Student student) {
         studentService.saveStudent(student);
         return "New Student is added";
     }
 
     @GetMapping("/getAll")
-    public List<Student> getAllStudents(){
+    public List<Student> getAllStudents() {
         return studentService.getAllStudents();
     }
 }
